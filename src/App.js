@@ -6,8 +6,8 @@ import Statistics from './components/statistics';
 class App extends Component {
   static defaultProps={
     
-      goodProps:6,
-      neutralProps:8,
+      goodProps:5,
+      neutralProps:2,
       badProps:2
      
   }
@@ -29,10 +29,18 @@ class App extends Component {
     } else if (event.target.className==='Bad'){
       this.setState((prevState)=>{return {bad:prevState.bad+1}})
     }
+    console.log(this.state)
 
   }
+  countTotalFeedback(){
+    return this.state.good+this.state.neutral+this.state.bad
+  }
+  countPositiveFeedbackPercentage(){
+    const positivePercentage=this.state.good*100/this.countTotalFeedback()
+    return positivePercentage.toFixed(2)
+  }
+
  
-  
  
   render() {
     const {good,neutral,bad}=this.state;
@@ -43,12 +51,12 @@ class App extends Component {
 
       <>
         <h1>Please leave feedback</h1> 
-        <FeedbackOptions  options={this.options} onLeaveFeedback={this.onLeaveFeedback}/>
+        <FeedbackOptions  onLeaveFeedback={this.onLeaveFeedback}/>
               
 
        
         <h3>Statistics</h3>
-        <Statistics good={good} bad={bad} neutral={neutral} total={0} positivePercentage={0}/>
+        <Statistics good={good} bad={bad} neutral={neutral} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
 
               
       </>
