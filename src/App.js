@@ -1,14 +1,15 @@
 import React,{Component} from 'react';
 import PropTypes from 'prop-types'
 import FeedbackOptions from './components/feedback/'
-import Statistics from './components/statistics';
+import Statistics from './components/statistics'
+import SectionTitle from './components/SectionTitle'
 
 class App extends Component {
   static defaultProps={
     
-      goodProps:5,
-      neutralProps:2,
-      badProps:2
+      goodProps:0,
+      neutralProps:0,
+      badProps:0
      
   }
   static propTypes={
@@ -29,7 +30,7 @@ class App extends Component {
     } else if (event.target.className==='Bad'){
       this.setState((prevState)=>{return {bad:prevState.bad+1}})
     }
-    console.log(this.state)
+    
 
   }
   countTotalFeedback(){
@@ -39,6 +40,8 @@ class App extends Component {
     const positivePercentage=this.state.good*100/this.countTotalFeedback()
     return positivePercentage.toFixed(2)
   }
+  
+  
 
  
  
@@ -47,16 +50,19 @@ class App extends Component {
     
     
        return (
-      
+            <>
+      <SectionTitle><h1>Please leave feedback</h1> 
+        
+             <FeedbackOptions  onLeaveFeedback={this.onLeaveFeedback}/>
+                
 
-      <>
-        <h1>Please leave feedback</h1> 
-        <FeedbackOptions  onLeaveFeedback={this.onLeaveFeedback}/>
-              
-
-       
-        <h3>Statistics</h3>
-        <Statistics good={good} bad={bad} neutral={neutral} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
+         
+             <h3>Statistics</h3>
+        </SectionTitle>
+        
+            <Statistics good={good} bad={bad} neutral={neutral} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
+        
+        
 
               
       </>

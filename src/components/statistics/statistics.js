@@ -1,30 +1,35 @@
 import React,{Component} from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import SectionTitle from '../SectionTitle'
+import Notification from '../Notification';
+
 
 
 class Statistics extends Component{
+  
+
   static propTypes={
-    good:PropTypes.number,
-    neutral:PropTypes.number,
-    bad:PropTypes.number,
+   
     total:PropTypes.number,
     positivePercentage:PropTypes.string
   }
-    
+  
          
    
-    render(){
-      const { good, neutral, bad,total,positivePercentage}=this.props;
-      
-      
-        
-        return (
+  render=()=>{
+      const {good,bad,neutral,total,positivePercentage}=this.props
+      if (total===0) {
+        return <SectionTitle><Notification messadge={`No feedback given`}/></SectionTitle>;
+      }
+          return (
+            
+         
             <div>
-          <p>Кол-во хороших комментариев: {good}</p>
-          <p>Кол-во нейтральных комментариев: {neutral}</p>
-          <p>Кол-во плохих комментариев: {bad}</p>
-          <p>Общее кол-во комментариев:{total}</p>
-         <p>% хороших комментариев от общего кол-ва:{positivePercentage}%</p>
+          <SectionTitle><p>Кол-во хороших комментариев: {good}</p></SectionTitle>
+          <SectionTitle><p>Кол-во нейтральных комментариев: {neutral}</p></SectionTitle>
+          <SectionTitle><p>Кол-во плохих комментариев: {bad}</p></SectionTitle>
+          <SectionTitle><p>Общее кол-во комментариев:{total}</p></SectionTitle>
+          <SectionTitle><p>% хороших комментариев от общего кол-ва:{positivePercentage}%</p></SectionTitle>
          
         </div>
 
