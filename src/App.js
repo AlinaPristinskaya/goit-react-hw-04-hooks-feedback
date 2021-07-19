@@ -23,9 +23,7 @@ class App extends Component {
   onLeaveFeedback=e=>{
    const buttonClick= e.target.innerText;
    this.setState(prevState=>({[buttonClick]:prevState[buttonClick]+1}))
-    
-     
-
+   
   }
   
   countTotalFeedback(){
@@ -36,13 +34,8 @@ class App extends Component {
     return Math.round(positivePercentage)
   }
   
-  
-
- 
- 
   render() {
     const {good,neutral,bad}=this.state;
-    
     
        return (
             <>
