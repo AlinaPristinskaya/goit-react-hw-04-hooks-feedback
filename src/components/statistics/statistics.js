@@ -6,15 +6,11 @@ import Notification from '../Notification';
 
 
 class Statistics extends Component{
-  
-
-  static propTypes={
-   
+    static propTypes={
     total:PropTypes.number,
-    positivePercentage:PropTypes.string
+    positivePercentage:PropTypes.number
   }
-  
-         
+      
    
   render=()=>{
       const {good,bad,neutral,total,positivePercentage}=this.props
